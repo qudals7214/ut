@@ -1,0 +1,71 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+
+group = 'com.solo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // spring(boot) web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // jsp
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.58'
+
+    // jstl
+    implementation 'taglibs:standard:1.1.2'
+    implementation 'javax.servlet:jstl:1.2'
+
+    // mysql
+    implementation 'mysql:mysql-connector-java:8.0.28'
+
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.6'
+
+    // DEV tool 재시작 안해도 변경 사항 로드
+    compileOnly("org.springframework.boot:spring-boot-devtools")
+
+    //jsoup 웹 크롤링
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    //오라클 json
+    implementation 'org.json:org.json:chargebee-1.0'
+
+//	//Oauth 2 클라
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//
+//	//스프링 부트 시큐리티
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	testImplementation 'org.springframework.security:spring-security-test'
+//
+//	//thymeleaf
+//	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
