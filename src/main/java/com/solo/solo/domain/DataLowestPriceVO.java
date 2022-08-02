@@ -14,6 +14,14 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 public class DataLowestPriceVO {
+    /////////////////////// 비고 / 이슈 추가       ex) 유통기한 한달
+
+
+
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //IDENTITY 전략 사용
     private Long key;

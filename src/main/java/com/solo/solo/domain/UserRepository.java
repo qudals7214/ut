@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @Qualifier("userRepository")
-public interface UserRepository extends JpaRepository<UserVO , String> {
+public interface UserRepository extends JpaRepository<UserVO , Long> {
 //  JPA : Java <-> Database 간의 자동 번역기 역할을 수행
 
 
@@ -18,6 +18,18 @@ public interface UserRepository extends JpaRepository<UserVO , String> {
 
     List<UserVO> findAllByOrderByCreatedAt();
 
-    @Query(value = "select * from users where id = ?1 and pw = ?2", nativeQuery = true)
+    @Query(value = "select * from solo.users where id = ?1 and pw = ?2", nativeQuery = true)
     List<UserVO> logCheck(String id, String pw);
+
+
+
+
+    /////////////////////////////////////////카카오
+    @Query(value = "insert into solo.users (id,name,social) values (?1 , ?2 , ?3)" , nativeQuery = true)
+    List<UserVO> insertUser(String id , String name , String social);
+
+    // 정보 확인
+    @Query(value = "select * from solo.users where id = ?1 and social = ?2", nativeQuery = true)
+    List<UserVO> findUser(String id , String social);
+    /////////////////////////////////////////카카오
 }
