@@ -25,11 +25,11 @@ public interface UserRepository extends JpaRepository<UserVO , Long> {
 
 
     /////////////////////////////////////////카카오
-    @Query(value = "insert into solo.users (id,name,social) values (?1 , ?2 , ?3)" , nativeQuery = true)
-    List<UserVO> insertUser(String id , String name , String social);
+    @Query(value = "insert into solo.users (`id`,`name`,`platform`) values (?1 , ?2 , ?3)" , nativeQuery = true)
+    void insertUser(String id , String name , String platform);
 
     // 정보 확인
-    @Query(value = "select * from solo.users where id = ?1 and social = ?2", nativeQuery = true)
+    @Query(value = "select * from solo.users where id = ?1 and platform = ?2", nativeQuery = true)
     List<UserVO> findUser(String id , String social);
     /////////////////////////////////////////카카오
 }

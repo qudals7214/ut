@@ -125,8 +125,9 @@ public class KakaoService {
         if(result.size()<1) {
             System.out.println("가입 진행");
             // result가 null이면 정보가 저장이 안되있는거므로 정보를 저장.
-            userInfo.setSocial("kakao");
-            ur.insertUser(userInfo.getId(),userInfo.getName(), kakao);
+            userInfo.setPlatform("kakao");
+            ur.save(new UserVO(userInfo.getId(),userInfo.getName(),kakao));
+            // ur.insertUser(userInfo.getId(),userInfo.getName(), kakao);
             // 위 코드가 정보를 저장하기 위해 Repository로 보내는 코드임.
             return ur.findUser(userInfo.getId(), kakao);
             // 위 코드는 정보 저장 후 컨트롤러에 정보를 보내는 코드임.

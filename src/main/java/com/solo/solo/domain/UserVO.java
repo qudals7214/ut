@@ -26,13 +26,18 @@ public class UserVO extends TimeStamp {
     private String name;
 
 
-    @Column(name ="social" , nullable = false)
-    private String social;
+    @Column(name ="platform" , nullable = false)
+    private String platform;
 
+    public UserVO(String id , String name ,String platform){
+        this.id=id;
+        this.name=name;
+        this.platform=platform;
+    }
 
     public UserVO(UserRequestDTO userRequestDTO){
         this.id=userRequestDTO.getId();
-        this.social= userRequestDTO.getSocial();
+        this.platform= userRequestDTO.getPlatform();
         this.name= userRequestDTO.getName();
     }
 //

@@ -25,4 +25,25 @@ public class MainController {
     public String main() {
         return "main";
     }
+
+    @RequestMapping(value = "/table")
+    public String table() {return "table";}
+
+    @RequestMapping(value = "/chart")
+    public String chart() {return "chart";}
+
+    @RequestMapping(value = "/utilitiesCard")
+    public String utilitiesCard() {return "utilities-card";}
+
+    @RequestMapping(value = "/utilitiesChart")
+    public String utilitiesChart() {return "utilities-chart";}
+
+    @RequestMapping(value = "/utilitiesLike")
+    public String utilitiesLike() {return "utilities-like";}
+
+    @RequestMapping(value = "/utilitiesTable")
+    public String utilitiesTable() {return "utilities-table";}
+
+//    @RequestMapping(value = "/error404")
+//    public String error() {return "error404";}
 }

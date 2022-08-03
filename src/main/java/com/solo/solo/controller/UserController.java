@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -29,15 +31,13 @@ public class UserController {
 
 
     @RequestMapping(value="/login/oauth2/code/kakao", method=RequestMethod.GET)
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code      , HttpServletResponse response , HttpServletRequest request) throws Exception {
+    public void kakaoLogin(@RequestParam(value = "code", required = false) String code      , HttpServletResponse response , HttpServletRequest request) throws Exception {
         System.out.println("#########" + code);
         String access_Token = ks.getAccessToken(code);
         List<UserVO> userInfo = ks.getUserInfoKakao(access_Token);
 
         if(!userInfo.isEmpty()) {
             // 이하 코드 모두 이 안으로
-
-
             System.out.println("###access_Token#### : " + access_Token);
             System.out.println("###nickname#### : " + userInfo.get(0).getName());
             System.out.println("###email#### : " + userInfo.get(0).getId());
@@ -46,14 +46,27 @@ public class UserController {
             // 아래 코드가 추가되는 내용
             session.invalidate();
             // 위 코드는 session객체에 담긴 정보를 초기화 하는 코드.
-            session.setAttribute("kakaoN", userInfo.get(0).getName());
-            session.setAttribute("kakaoE", userInfo.get(0).getId());
+            session.setAttribute("name", userInfo.get(0).getName());
+            session.setAttribute("id", userInfo.get(0).getId());
             // 위 2개의 코드는 닉네임과 이메일을 session객체에 담는 코드
             // jsp에서 ${sessionScope.kakaoN} 이런 형식으로 사용할 수 있다.
 
+            String url = "/index";
+            response.sendRedirect(url);
+//            request.getRequestDispatcher(url).forward(request, response);
         }
-        // 리턴값은 용도에 맞게 변경하세요~
-        return "/index";
+    }
+    @RequestMapping(value = "/v1/logout", method = RequestMethod.GET)
+//    @PostMapping("/v1/logout")
+    public void logout(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+//        session.setAttribute("log", null);
+        String url = "/index";
+//        request.getRequestDispatcher(url).forward(request, response);
+        System.out.println("로그아웃 성공");
+
+        response.sendRedirect(url);
     }
 
 /////////////////////////////////////////////////// 카카오
@@ -157,14 +170,7 @@ public class UserController {
 //        }
 //    }
 //
-//    @PostMapping("/v1/logout")
-//    public void logout(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        session.setAttribute("log", null);
-//        String url = "/index";
-//        request.getRequestDispatcher(url).forward(request, response);
-//        System.out.println("로그아웃 성공");
-//    }
+
 //
 //
 //    @PostMapping("/test")

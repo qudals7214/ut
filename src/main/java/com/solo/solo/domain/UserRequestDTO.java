@@ -10,5 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDTO {
-    String id ,  name , social;
+    String id ,  name , platform;
 }
