@@ -47,6 +47,10 @@
           100/30  = 3.3
 
           1%당 3.3% 스타일 와이드 조정
+
+          목표가 / 현재가 = 달성%
+          70,000 / 100,000 = 완성률 70%
+          70,000 / 50,000 =  완성률 140%
           --%>
 
 
@@ -55,35 +59,37 @@
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Criteria
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Now
                     </div>
                     <div class="row no-gutters align-items-center">
                       <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">1,000,000</div><%-- %값 --%>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">277,000</div><%-- %값 --%>
                       </div>
                       <div class="col">
                         <div class="progress progress-sm mr-2">
                           <div class="progress-bar bg-info" role="progressbar"
-                               style="width: 33.3%" aria-valuenow="15" aria-valuemin="0"
+                               style="width: 90%" aria-valuenow="15" aria-valuemin="0"
                                aria-valuemax="100"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Now</div>
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Target</div>
                     <div class="row no-gutters align-items-center">
                       <div style="padding-right: 0">
-                        <div class="h5 mb-0  font-weight-bold text-gray-800">850,000</div><%-- %값 --%>
+                        <div class="h5 mb-0  font-weight-bold text-gray-800">250,000</div><%-- %값 --%>
                       </div>
                     </div>
                   </div>
                 </div>
-                        <div>85% , -150,000</div>
+                        <div>90.2% , +27,000</div>
               </div>
             </div>
           </div>
         <!-- Content Row -->
+
+
 
         <div class="row"  style="width: 100%">
 

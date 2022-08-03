@@ -10,7 +10,6 @@ import java.util.List;
 public interface DataLowestPriceRepository extends JpaRepository<DataLowestPriceVO , Long> {
 
 
-
         @Query(value = "select * from solo.lowestPrice where name = ?1", nativeQuery = true)
         List<DataLowestPriceVO> getDataLowestPriceVOBy(String name);
 }
