@@ -13,10 +13,11 @@ import java.sql.Date;
 @Setter
 public class DataRequestDTO {
     String firstCategory, secondCategory , thirdCategory , name  , currency ;
-    String brand, url , notificationList ,id;
+    String brand, url , notificationList ,id , item , platform;
 
     int price, card , cash , lowestPrice , shipping , quantity , totalPrice ;
-    int marketPrice;
+    int marketPrice , defaultPrice , setPrice;
 
     Date purchaseDate , date;
+
 }

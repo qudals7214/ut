@@ -16,10 +16,10 @@ public interface UserRepository extends JpaRepository<UserVO , Long> {
 //    @Query(value = "select * from users order by created_at desc" , nativeQuery = true)
 //    public List<UserVO> findAllOrderd();
 
-    List<UserVO> findAllByOrderByCreatedAt();
+//    List<UserVO> findAllByOrderByCreatedAt();
 
-    @Query(value = "select * from solo.users where id = ?1 and pw = ?2", nativeQuery = true)
-    List<UserVO> logCheck(String id, String pw);
+//    @Query(value = "select * from solo.users where id = ?1 and pw = ?2", nativeQuery = true)
+//    List<UserVO> logCheck(String id, String pw);
 
 
 
