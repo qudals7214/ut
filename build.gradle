@@ -47,7 +47,7 @@ dependencies {
     compileOnly("org.springframework.boot:spring-boot-devtools")
 
     //jsoup 웹 크롤링
-    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'org.jsoup:jsoup:1.14.3'
 
     //오라클 json
     implementation 'org.json:org.json:chargebee-1.0'
