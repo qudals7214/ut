@@ -32,6 +32,9 @@ public class MainController {
     @RequestMapping(value = "/chart")
     public String chart() {return "chart";}
 
+    @RequestMapping(value = "/result")
+    public String result() {return "result";}
+
     @RequestMapping(value = "/utilitiesCard")
     public String utilitiesCard() {return "utilities-card";}
 

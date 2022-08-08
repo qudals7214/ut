@@ -42,11 +42,11 @@ public class DataUsersLikeVO {
         this.defaultPrice=defaultPrice;
         this.setPrice=setPrice;
     }
-    public DataUsersLikeVO(DataRequestDTO dataRequestDTO){
-        this.id=dataRequestDTO.getId();
-        this.item=dataRequestDTO.getItem();
-        this.platform=dataRequestDTO.getPlatform();
-        this.defaultPrice=dataRequestDTO.getDefaultPrice();
-        this.setPrice=dataRequestDTO.getSetPrice();
-    }
+//    public DataUsersLikeVO(DataRequestDTO dataRequestDTO){
+//        this.id=dataRequestDTO.getId();
+//        this.item=dataRequestDTO.getItem();
+//        this.platform=dataRequestDTO.getPlatform();
+//        this.defaultPrice=dataRequestDTO.getDefaultPrice();
+//        this.setPrice=dataRequestDTO.getSetPrice();
+//    }
 }

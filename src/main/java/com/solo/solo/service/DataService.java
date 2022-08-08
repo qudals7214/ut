@@ -1,27 +1,30 @@
 package com.solo.solo.service;
 
-import com.solo.solo.domain.DataLowestPriceVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.solo.solo.crawling.search.Crawling;
+import com.solo.solo.crawling.search.FmkoreaCrawling;
+import com.solo.solo.domain.DataVO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 public class DataService {
-    @Autowired
-    private com.solo.solo.domain.DataItemCategoryRepository categoryRepository;
-    @Autowired
-    private com.solo.solo.domain.DataLowestPriceRepository lowestPriceRepository;
-    @Autowired
-    private com.solo.solo.domain.DataPurchaseListRepository purchaseListRepository;
+//    @Autowired
+//    private com.solo.solo.domain.DataPurchaseListRepository purchaseListRepository;
 
-
-
-
-
-    public List<DataLowestPriceVO> readAllPrice(String name) {
-        return lowestPriceRepository.getDataLowestPriceVOBy(name);
+    public List<DataVO> Search(String search){
+        Crawling crawling = new Crawling();
+        List<DataVO> result = crawling.Search(search);
+        return result;
     }
+
+
+
+//
+//
+//    public List<DataLowestPriceVO> readAllPrice(String name) {
+//        return lowestPriceRepository.getDataLowestPriceVOBy(name);
+//    }
 }
