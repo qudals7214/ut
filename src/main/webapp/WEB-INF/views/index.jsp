@@ -12,55 +12,55 @@
 
 
 
-<%
-    ArrayList<DataVO> getResult = (ArrayList<DataVO>) session.getAttribute("result");
+<%--<%--%>
+<%--    ArrayList<DataVO> getResult = (ArrayList<DataVO>) session.getAttribute("result");--%>
 
-    if(getResult!=null){
-%>
-<script>
-    let dateList2= new Array();
-    let itemList2= new Array();
-    let priceList2= new Array();
-<%
-for (int i =0; i<getResult.size(); i++){
-%>
-    dateList2.push(<%=getResult.get(i).getResultDate()%>);
-    itemList2.push(<%=getResult.get(i).getItem()%>);
-    priceList2.push(<%=getResult.get(i).getPrice()%>);
+<%--    if(getResult!=null){--%>
+<%--%>--%>
+<%--<script>--%>
+<%--    let dateList2= new Array();--%>
+<%--    let itemList2= new Array();--%>
+<%--    let priceList2= new Array();--%>
+<%--<%--%>
+<%--for (int i =0; i<getResult.size(); i++){--%>
+<%--%>--%>
+<%--    dateList2.push(<%=getResult.get(i).getResultDate()%>);--%>
+<%--    itemList2.push(<%=getResult.get(i).getItem()%>);--%>
+<%--    priceList2.push(<%=getResult.get(i).getPrice()%>);--%>
 
-    console.log(<%=getResult.get(i).getPrice()%>);
-    <%
-}
-%>
-    // window.onload = search(search){
-    function searchResult(search) {
-        // search1=search;
-        console.log("ee");
-
-        // let search = $("[name=searchKeyword]").val();
-        // console.log(search);
-        $.ajax({
-            type: "GET",
-            url: "/v1/search",
-            data : search,
-            contentType : 'application/json; charset=UTF-8',
-            dataType : 'json',
-            success : function (result){
-                result.forEach(e => {
-                    dateList2.push(e.getDate());
-                    itemList2.push(e.getItem());
-                    priceList2.push(e.getPrice());
-                })
-
-                // window.onload = function () {
-                //     console.log(search);
-                //         console.log(dateList2[0].val());
-                //
-                //     }
-
-            }
-        })
-    }
+<%--    console.log(<%=getResult.get(i).getPrice()%>);--%>
+<%--    <%--%>
+<%--}--%>
+<%--%>--%>
+<%--    // window.onload = search(search){--%>
+<%--    // function searchResult(search) {--%>
+<%--    //     // search1=search;--%>
+<%--    //     console.log("ee");--%>
+<%--    //--%>
+<%--    //     // let search = $("[name=searchKeyword]").val();--%>
+<%--    //     // console.log(search);--%>
+<%--    //     $.ajax({--%>
+<%--    //         type: "GET",--%>
+<%--    //         url: "/v1/search",--%>
+<%--    //         data : search,--%>
+<%--    //         contentType : 'application/json; charset=UTF-8',--%>
+<%--    //         dataType : 'json',--%>
+<%--    //         success : function (result){--%>
+<%--    //             result.forEach(e => {--%>
+<%--    //                 dateList2.push(e.getDate());--%>
+<%--    //                 itemList2.push(e.getItem());--%>
+<%--    //                 priceList2.push(e.getPrice());--%>
+<%--    //             })--%>
+<%--    //--%>
+<%--    //             // window.onload = function () {--%>
+<%--    //             //     console.log(search);--%>
+<%--    //             //         console.log(dateList2[0].val());--%>
+<%--    //             //--%>
+<%--    //             //     }--%>
+<%--    //--%>
+<%--    //         }--%>
+<%--    //     })--%>
+<%--    // }--%>
 
     <%--$('input[name="fruit"]:checked').each(function(i){//체크된 리스트 저장--%>
     <%--    fruitArray.push($(this).val());--%>
@@ -88,9 +88,9 @@ for (int i =0; i<getResult.size(); i++){
     <%--};--%>
 </script>
 
-<%
-    }
-%>
+<%--<%--%>
+<%--    }--%>
+<%--%>--%>
 
 
 

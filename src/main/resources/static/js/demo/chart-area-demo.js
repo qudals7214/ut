@@ -30,7 +30,18 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // let search1;
 
-function searchResult(search) {
+let dateList2 = new Array();
+let itemList2 = new Array();
+let priceList2 = new Array();
+
+function searchResult() {
+    let getSearch = $("[name=search]").val();
+    console.log(getSearch);
+    alert(getSearch);
+
+    // let result;
+    // result.
+
     // search1=search;
     // console.log("ee");
 
@@ -39,26 +50,29 @@ function searchResult(search) {
     $.ajax({
         type: "GET",
         url: "/v1/search",
-        data : search,
+        data : {
+            "search" : getSearch
+        },
         contentType : 'application/json; charset=UTF-8',
         dataType : 'json',
         success : function (result){
             result.forEach(e => {
-                dateList2.push(e.get("date"));
-                itemList2.push(e.get("item"));
-                priceList2.push(e.get("price"));
-                // console.log(e);
+                // alert(e);
+                dateList2.push(e['date']);
+                itemList2.push(e['item']);
+                priceList2.push(e['price']);
+                console.log(e);
             })
 
-            window.onload = function () {
-                console.log(search);
-                    console.log(dateList2[0].val());
-
-                }
-
+            // window.onload = function () {
+            //     console.log(search);
+            //         console.log(dateList2[0].val());
+            //
+            //     }
+        // location.href="/index";
         }
     })
-    alert(search);
+    // alert(search);
 }
 
 
