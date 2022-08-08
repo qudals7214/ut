@@ -294,6 +294,7 @@ for(var i=0; i<10; i++){
 
 
 
+
 let dateList = document.getElementsByName("date").values();
 let itemList = document.getElementsByName("item").values();
 let priceList = document.getElementsByName("price").values();
