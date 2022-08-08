@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.solo.solo.domain.DataVO" %><%--
   Created by IntelliJ IDEA.
   User: qudal
   Date: 2022-07-29
@@ -18,6 +19,8 @@
 <c:url var="logout" value="/v1/logout"/>
 <c:url var="search" value="/v1/search"/>
 
+
+
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -28,12 +31,15 @@
 
     <!-- Topbar Search -->
     <form
-            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="${search}">
+<%--            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="${search}">--%>
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                   aria-label="Search" aria-describedby="basic-addon2" name="search">
+                   aria-label="Search" aria-describedby="basic-addon2" name="search" onsubmit="searchResult(  $('[name=search]').val()  )">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button" onclick="location.href='${search}'">
+<%--                <button class="btn btn-primary" type="button" onclick="location.href='${search}'" name="searchKeyword">--%>
+                    <button class="btn btn-primary" type="button" onclick="searchResult(  $('[name=search]').val()  )">
+<%--                    <button class="btn btn-primary" type="button">--%>
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>

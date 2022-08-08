@@ -1,20 +1,99 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.solo.solo.domain.DataVO" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Date" %><%--
-  Created by IntelliJ IDEA.
-  User: qudal
-  Date: 2022-07-29
-  Time: 오전 11:00
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Date" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body id="page-top">
+
+
+
+<%
+    ArrayList<DataVO> getResult = (ArrayList<DataVO>) session.getAttribute("result");
+
+    if(getResult!=null){
+%>
+<script>
+    let dateList2= new Array();
+    let itemList2= new Array();
+    let priceList2= new Array();
+<%
+for (int i =0; i<getResult.size(); i++){
+%>
+    dateList2.push(<%=getResult.get(i).getResultDate()%>);
+    itemList2.push(<%=getResult.get(i).getItem()%>);
+    priceList2.push(<%=getResult.get(i).getPrice()%>);
+
+    console.log(<%=getResult.get(i).getPrice()%>);
+    <%
+}
+%>
+    // window.onload = search(search){
+    function searchResult(search) {
+        // search1=search;
+        console.log("ee");
+
+        // let search = $("[name=searchKeyword]").val();
+        // console.log(search);
+        $.ajax({
+            type: "GET",
+            url: "/v1/search",
+            data : search,
+            contentType : 'application/json; charset=UTF-8',
+            dataType : 'json',
+            success : function (result){
+                result.forEach(e => {
+                    dateList2.push(e.getDate());
+                    itemList2.push(e.getItem());
+                    priceList2.push(e.getPrice());
+                })
+
+                // window.onload = function () {
+                //     console.log(search);
+                //         console.log(dateList2[0].val());
+                //
+                //     }
+
+            }
+        })
+    }
+
+    <%--$('input[name="fruit"]:checked').each(function(i){//체크된 리스트 저장--%>
+    <%--    fruitArray.push($(this).val());--%>
+    <%--});--%>
+
+
+
+    <%--function getSearchResult(){--%>
+
+    <%--    &lt;%&ndash;let getResult = <%=getResult%>;&ndash;%&gt;--%>
+
+    <%--    $.ajax({--%>
+    <%--        url:"${search}",--%>
+    <%--        type:"get",--%>
+    <%--        data:<%=getResult%>,--%>
+    <%--        datatype:"json",--%>
+    <%--        success:function(result){--%>
+    <%--            result.forEach(e =>{--%>
+    <%--                dateList2.push(e.getDate());--%>
+    <%--                itemList2.push(e.getItem());--%>
+    <%--                priceList2.push(e.getPrice());--%>
+    <%--            })--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--};--%>
+</script>
+
+<%
+    }
+%>
+
+
+
 <div id="wrapper">
     <%-- side bar--%>
     <c:import url="import-sidebar.jsp"/>
@@ -97,7 +176,6 @@
 
 
                 <div class="row" style="width: 100%">
-
                     <%
 
                         //                        List<DataVO> result = request.getParameter("result");
@@ -112,19 +190,42 @@
 
                         if (result != null) {
                             System.out.println("값 받아옴");
-                            for (int i = 0; i < result.size(); i++) {
-                                item.add(result.get(i).getItem());
-                                price.add(result.get(i).getPrice());
-                                date.add(result.get(i).getResultDate());
-                            }
-                    %>
-                                            <input type="hidden" name="item" value="<%=item%>">
-                                            <input type="hidden" name="price" value="<%=price%>">
-                                            <input type="hidden" name="date" value="<%=date%>">
-                    <%
-                        }
+//                            for (int i = 0; i < result.size(); i++) {
+//                                item.add(result.get(i).getItem());
+//                                System.out.println(result.get(i).getItem());
+//                                price.add(result.get(i).getPrice());
+//                                System.out.println(result.get(i).getPrice());
+//                                date.add(result.get(i).getResultDate());
+//                                System.out.println(result.get(i).getResultDate());
+//                            }
                     %>
 
+<%--                    <c:set var="price" value="<%=price%>"/>--%>
+<%--                    <h1><c:out value="${price}"/></h1>--%>
+
+<%--                    <h1>re</h1>--%>
+<%--                    <c:set var="price" value="<%=price%>"/>--%>
+<%--                    <c:forEach items="${price}" var="i">--%>
+<%--                        <script>--%>
+<%--                            priceList2.push(${i})--%>
+<%--                            console.log(priceList2)--%>
+<%--                            console.log("??")--%>
+<%--                        </script>--%>
+<%--                    </c:forEach>--%>
+
+<%--                                            <input type="hidden" name="item" value="<%=item%>">--%>
+<%--                                            <input type="hidden" name="price" value="${price}">--%>
+<%--                                            <input type="hidden" name="date" value="<%=date%>">--%>
+<%--                                            <input type="hidden" name="test" value="<%=1%>">--%>
+<%--                                            <c:set var="price1" value="<%=price%>"/>--%>
+<%--                                            <c:set var="item1" value="<%=item%>"/>--%>
+<%--                                            <c:set var="date1" value="<%=date%>"/>--%>
+<%--                                            <c:set var="test1" value="<%=1%>"/>--%>
+<%--                                            <h1><c:out value="${price.get(0)}"/></h1>--%>
+                    <%
+
+                        }
+                    %>
 
                     <!-- Area Chart -->
                     <div class="col-xl-8 col-lg-7" style="width: 100%">

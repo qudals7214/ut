@@ -2,6 +2,9 @@ package com.solo.solo.controller;
 
 import com.solo.solo.domain.DataVO;
 import com.solo.solo.service.DataService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,15 +33,40 @@ public class DataController {
 //        List<DataVO> result = ds.Search(search);
 //    }
 
+//    @RequestMapping(value = "/v1/search" , method = RequestMethod.GET)
+//        public @ResponseBody List<DataVO> search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException {
+//            List<DataVO> result = ds.Search(search);
+//            String url = "/index";
+//            response.sendRedirect(url);
+//            session.setAttribute("search",search);
+//            session.setAttribute("result", result);
+//        return result;
+//    }
+
     @RequestMapping(value = "/v1/search" , method = RequestMethod.GET)
-    public @ResponseBody List<DataVO> search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException {
-        List<DataVO> result = ds.Search(search);
-        String url = "/index";
-        response.sendRedirect(url);
-        session.setAttribute("search",search);
-        session.setAttribute("result", result);
-        return result;
+        public @ResponseBody JSONObject search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException, JSONException {
+            List<DataVO> result = ds.Search(search);
+            String url = "/index";
+            response.sendRedirect(url);
+            session.setAttribute("search",search);
+            session.setAttribute("result", result);
+
+
+
+            JSONArray JSONArray = new JSONArray();
+            JSONObject resultJSON = new JSONObject();
+            for(int i=0; i< result.size(); i++){
+                JSONObject data = new JSONObject();
+                data.put("item",result.get(i).getItem());
+                data.put("price",result.get(i).getPrice());
+                data.put("date",result.get(i).getResultDate());
+                JSONArray.put(data);
+            }
+            resultJSON.put("result",JSONArray);
+
+        return resultJSON;
     }
+
 
 //    @RequestMapping(value = "/v1/getLowestPrice", method = RequestMethod.GET)
 //    public @ResponseBody List<DataLowestPriceVO> getLowestPrice(@RequestParam(value = "name", required = false) String name){
