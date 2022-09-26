@@ -36,6 +36,7 @@ public class QuasarzoneTemporaryCrawling{
         int year = LocalDate.now().getYear();
         LocalDate localDate = LocalDate.now();
         int mon1 = localDate.getMonthValue();
+        int day = localDate.getDayOfMonth();
         boolean first = true;
         boolean end = false;
 
@@ -98,7 +99,7 @@ public class QuasarzoneTemporaryCrawling{
                         year--;
                     }
 
-                    date = year+"-"+mon1+"-"+cut2[0];
+                    date = year+"-"+mon1+"-"+day+" "+cut2[0];
 
                     if(cut2.length>1){
                         date = year+"-"+mon2+"-"+cut2[1];

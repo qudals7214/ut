@@ -1,7 +1,9 @@
 package com.solo.solo.controller;
 
 import com.solo.solo.domain.DataVO;
+import com.solo.solo.domain.DataVOComparator;
 import com.solo.solo.service.DataService;
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,8 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class DataController {
@@ -38,8 +39,41 @@ public class DataController {
             List<DataVO> result = ds.Search(search);
 //            String url = "/index";
 //            response.sendRedirect(url);
+//            session.invalidate();
 //            session.setAttribute("search",search);
 //            session.setAttribute("result", result);
+//        result.sort((o1,o2) -> o1.getResultDate().compareTo(o2.getResultDate()));
+//        result.sort(Comparator.comparing(DataVO::getResultDate));
+//        result.sort((o1, o2) -> o1.sort(o2));
+//        Arrays.sort(result,new Comparator<DataVO>());
+
+//        String searchKeyword = search;
+//        request.setAttribute("search",search);
+
+
+
+        Collections.sort(result , new DataVOComparator());
+
+        for(DataVO d : result){
+            System.out.println("데이터 컨트롤러 시간 정렬 : "+d.getResultDate());
+        }
+
+        session.setAttribute("search",search);
+        session.setAttribute("result",result);
+        session.setMaxInactiveInterval(60*60);
+
+//        System.out.println(result);
+//        System.out.println(search);
+
+        String reA = (String) session.getAttribute(search);
+        String reB = (String) session.getAttribute(String.valueOf(result));
+
+
+        System.out.println(result);
+        System.out.println("데이터 컨트롤러");
+        System.out.println(search);
+
+
         return result;
     }
 
