@@ -53,7 +53,7 @@ function searchResult() {
 
     // search1=search;
     // console.log("ee");
-
+    //
     // let search = $("[name=searchKeyword]").val();
     // console.log(search);
     $.ajax({
