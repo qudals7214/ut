@@ -5,7 +5,8 @@
   Time: 오전 11:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -45,23 +46,23 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <%
-                    if(session.getAttribute("id")!=null){
-                %>
-                로그인
-                <%
-                    }else{
-                %>
-                <form action="${result}" method="post">
-                    <input type="text" name="name">
-                    <input type="text" name="id">
-                    <input type="submit">서밋</input>
-                </form>
+<%--                <%--%>
+<%--                    if(session.getAttribute("id")!=null){--%>
+<%--                %>--%>
+<%--                로그인--%>
+<%--                <%--%>
+<%--                    }else{--%>
+<%--                %>--%>
+<%--                <form action="${result}" method="post">--%>
+<%--                    <input type="text" name="name">--%>
+<%--                    <input type="text" name="id">--%>
+<%--                    <input type="submit">서밋</input>--%>
+<%--                </form>--%>
 
 
-                <%
-                    }
-                %>
+<%--                <%--%>
+<%--                    }--%>
+<%--                %>--%>
 
             </div>
             <%-- End Page Content --%>

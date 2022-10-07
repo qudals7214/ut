@@ -29,7 +29,7 @@ public class Crawling {
         Collections.sort(result, new Comparator<DataVO>() {
             @Override
             public int compare(DataVO o1, DataVO o2) {
-                return o1.getResultDate().compareTo(o2.getResultDate());
+                return o1.getDate().compareTo(o2.getDate());
             }
         });
         return  result;

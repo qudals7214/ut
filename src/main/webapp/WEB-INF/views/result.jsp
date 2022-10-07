@@ -8,7 +8,11 @@
   Time: 오전 11:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -56,40 +60,43 @@
                         String name = request.getParameter("name");
                         String id = request.getParameter("id");
 
-                        System.out.println(name);
-                        System.out.println(id);
 
                         String search = (String) request.getParameter("search");
 //                        Object getSearch = session.getAttribute("search");
 //                        String search = (String) getSearch;
 //                        String search = request.getParameter("search");
 
+                        request.setCharacterEncoding("UTF-8");
 
-
-                        List<DataVO> result = (List<DataVO>) session.getAttribute("result");
+                        List<DataVO> result = (List<DataVO>) request.getAttribute("result");
+//                        List<DataVO> result = (List<DataVO>) session.getAttribute("result");
                         ArrayList<String> item = new ArrayList<>();
                         ArrayList<Integer> price = new ArrayList<>();
-                        ArrayList<Date> date = new ArrayList<>();
+                        ArrayList<String> date = new ArrayList<>();
 
 
+                        System.out.println("result 페이지 ====================================================");
                         System.out.println(search);
-                        System.out.println("결과값");
                         System.out.println(result);
 
+                        System.out.println("result 페이지 ====================================================");
 
                         if (result != null) {
-                            System.out.println("값 받아옴");
+                            System.out.println("검색 결과 받아옴 result.jsp");
                             for (int i = 0; i < result.size(); i++) {
                                 item.add(result.get(i).getItem());
                                 System.out.println(result.get(i).getItem());
                                 price.add(result.get(i).getPrice());
                                 System.out.println(result.get(i).getPrice());
-                                date.add(result.get(i).getResultDate());
-                                System.out.println(result.get(i).getResultDate());
+                                date.add(result.get(i).getResultDate2());
+                                System.out.println(result.get(i).getResultDate2());
                             }
 
 
                     %>
+<%--                    <input type="hidden" value="<%=item%>" name="itemList2">--%>
+<%--                    <input type="hidden" value="<%=date%>" name="dateList2">--%>
+<%--                    <input type="hidden" value="<%=price%>" name="priceList2">--%>
 
                     <%--                    <c:set var="price" value="<%=price%>"/>--%>
                     <%--                    <h1><c:out value="${price}"/></h1>--%>
@@ -195,22 +202,38 @@
 <%--    </div>--%>
 <%--</div>--%>
 
+
+<script>
+    let dateList2= new Array();
+    let itemList2= new Array();
+    let priceList2= new Array();
+    <%for ( String d : date ){%>
+    dateList2.push('<%=d%>')
+    <%}%>
+    <%for ( String i : item ){%>
+    itemList2.push('<%=i%>')
+    <%}%>
+    <%for ( int p : price ){%>
+    priceList2.push('<%=p%>')
+    <%}%>
+</script>
+
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${CONTEXT}/vendor/jquery/jquery.min.js"></script>
+<script src="${CONTEXT}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="${CONTEXT}/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="${CONTEXT}/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="${CONTEXT}/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+<script src="${CONTEXT}/js/demo/chart-area-demo.js"></script>
+<script src="${CONTEXT}/js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>

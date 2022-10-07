@@ -56,7 +56,7 @@ public class UserController {
 //            request.getRequestDispatcher(url).forward(request, response);
         }
     }
-    @RequestMapping(value = "/v1/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
 //    @PostMapping("/v1/logout")
     public void logout(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         HttpSession session = request.getSession();

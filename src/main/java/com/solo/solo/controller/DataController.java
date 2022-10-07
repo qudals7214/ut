@@ -1,9 +1,16 @@
 package com.solo.solo.controller;
 
+import com.fasterxml.jackson.annotation.JacksonAnnotation;
+import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
 import com.solo.solo.domain.DataVO;
 import com.solo.solo.domain.DataVOComparator;
 import com.solo.solo.service.DataService;
 import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
+import jdk.swing.interop.DispatcherWrapper;
+import lombok.extern.jackson.Jacksonized;
+import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.util.*;
 
 @Controller
@@ -34,48 +43,109 @@ public class DataController {
 //        List<DataVO> result = ds.Search(search);
 //    }
 
-    @RequestMapping(value = "/v1/search" , method = RequestMethod.GET)
-        public @ResponseBody List<DataVO> search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException {
-            List<DataVO> result = ds.Search(search);
-//            String url = "/index";
-//            response.sendRedirect(url);
-//            session.invalidate();
-//            session.setAttribute("search",search);
-//            session.setAttribute("result", result);
-//        result.sort((o1,o2) -> o1.getResultDate().compareTo(o2.getResultDate()));
-//        result.sort(Comparator.comparing(DataVO::getResultDate));
-//        result.sort((o1, o2) -> o1.sort(o2));
-//        Arrays.sort(result,new Comparator<DataVO>());
+//    @JsonIgnore
+//    @RequestMapping(value = "/v1/search" , method = RequestMethod.POST)
+//        public @ResponseBody List<DataVO> search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException, ServletException, JSONException {
+//            List<DataVO> result = ds.Search(search);
+////            String url = "/index";
+////            response.sendRedirect(url);
+////            session.invalidate();
+////            session.setAttribute("search",search);
+////            session.setAttribute("result", result);
+////        result.sort((o1,o2) -> o1.getResultDate().compareTo(o2.getResultDate()));
+////        result.sort(Comparator.comparing(DataVO::getResultDate));
+////        result.sort((o1, o2) -> o1.sort(o2));
+////        Arrays.sort(result,new Comparator<DataVO>());
+//
+////        String searchKeyword = search;
+////        request.setAttribute("search",search);
+//
+//
+//
+//        Collections.sort(result , new DataVOComparator());
+//
+//        for(DataVO d : result){
+//            System.out.println("데이터 컨트롤러 시간 정렬 : "+d.getResultDate());
+//        }
+//
+////        session.setAttribute("search",search);
+////        session.setAttribute("result",result);
+////        session.setMaxInactiveInterval(60*60);
+//
+////        System.out.println(result);
+////        System.out.println(search);
+//
+//        String reA = (String) session.getAttribute(search);
+//        String reB = (String) session.getAttribute(String.valueOf(result));
+//
+//
+//        System.out.println("데이터 컨트롤러 시작===========================================");
+//        System.out.println(result);
+//        System.out.println(search);
+//
+//
+//
+//
+//
+//
+//
+////        request.setCharacterEncoding("UTF-8");
+////        response.setCharacterEncoding("UTF-8");
+//        request.setAttribute("search", search);
+//        request.setAttribute("result", result);
+//
+//
+////        pageContext.forward("responseTest4.jsp");
+////        response.sendRedirect("/result");
+//
+//        String url = "/result";
+//        request.getRequestDispatcher(url).forward(request, response);
+//
+//
+//
+//        System.out.println("데이터 컨트롤러 끝===========================================");
+//
+//
+//
+//
+//
+//
+//        return result;
+//    }
 
-//        String searchKeyword = search;
-//        request.setAttribute("search",search);
 
+    //////////////////////////////////////////////////////////////
 
+    @RequestMapping(value = "search" , method = RequestMethod.POST)
+    public void search1(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException, ServletException, JSONException {
+        List<DataVO> result = ds.Search(search);
 
         Collections.sort(result , new DataVOComparator());
 
         for(DataVO d : result){
-            System.out.println("데이터 컨트롤러 시간 정렬 : "+d.getResultDate());
+            d.resultDate();
+            System.out.println("데이터 컨트롤러 시간 정렬 : "+d.getDate());
+            System.out.println("데이터 컨트롤러 시간 정렬2 : "+d.getResultDate2());
         }
 
-        session.setAttribute("search",search);
-        session.setAttribute("result",result);
-        session.setMaxInactiveInterval(60*60);
-
-//        System.out.println(result);
-//        System.out.println(search);
-
-        String reA = (String) session.getAttribute(search);
-        String reB = (String) session.getAttribute(String.valueOf(result));
-
-
+        System.out.println("\n데이터 컨트롤러 시작===========================================\n");
         System.out.println(result);
-        System.out.println("데이터 컨트롤러");
         System.out.println(search);
 
+        request.setAttribute("search", search);
+        request.setAttribute("result", result);
 
-        return result;
+
+
+        String url = "/result";
+        System.out.println("\n데이터 컨트롤러 끝===========================================\n");
+
+        request.getRequestDispatcher(url).forward(request, response);
+
+//        return url;
     }
+
+    //////////////////////////////////////////////////////////////
 
 //    @RequestMapping(value = "/v1/search" , method = RequestMethod.GET)
 //        public @ResponseBody JSONObject search(@RequestParam(value = "search" , required = false) String search , HttpServletRequest request  , HttpServletResponse response) throws IOException, JSONException {

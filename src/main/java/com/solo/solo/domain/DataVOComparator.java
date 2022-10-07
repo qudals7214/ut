@@ -7,6 +7,6 @@ public class DataVOComparator implements Comparator<DataVO> {
 
     @Override
     public int compare(DataVO o1, DataVO o2) {
-        return Long.valueOf(o1.getResultDate().getTime()).compareTo(o2.getResultDate().getTime());
+        return Long.valueOf(o1.getDate().getTime()).compareTo(o2.getDate().getTime());
     }
 }

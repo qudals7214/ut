@@ -16,8 +16,8 @@
 <c:url var="index" value="/index"/>
 <c:url var="login" value="/login"/>
 <c:url var="result" value="/result"/>
-<c:url var="logout" value="/v1/logout"/>
-<c:url var="search" value="/v1/search"/>
+<c:url var="logout" value="/logout"/>
+<c:url var="search" value="/search"/>
 
 
 
@@ -33,19 +33,19 @@
     <form
 <%--                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="${search}">--%>
             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-            action="${result}" method="post"
+            action="${search}" method="post"
     >
         <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                    aria-label="Search" aria-describedby="basic-addon2"
 <%--               name="search" onsubmit="searchResult($('[name=search]').val())"--%>
 <%--                   name="search" onkeyup="if(window.event.keyCode===13){   searchResult()   }"--%>
-                   name="search" id="search" onkeydown="if(event.keyCode===13){searchResult()}"
+                   name="search" id="search" onkeydown="if(event.keyCode===13){${search}}"
             >
             <div class="input-group-append">
                 <%--                <button class="btn btn-primary" type="button" onclick="location.href='${search}'" name="searchKeyword">--%>
 <%--                <button class="btn btn-primary" type="button" onclick="searchResult($('[name=search]').val())">--%>
-                <button class="btn btn-primary" type="submit" onclick="searchResult()">
+                <button class="btn btn-primary" type="submit" onclick="${search}">
                     <%--                    <button class="btn btn-primary" type="button" onclick="searchResult()">--%>
                     <%--                    <button class="btn btn-primary" type="button">--%>
                     <i class="fas fa-search fa-sm"></i>
